@@ -13,7 +13,7 @@
 <title>Мастерская Риты — Швейное ателье в Санкт-Петербурге</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Literata:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
 /* ============================================
@@ -37,7 +37,8 @@
 
   --font-head: 'Cormorant Garamond', Georgia, serif;
   --font-display: 'Playfair Display', Georgia, serif;
-  --font-body: 'Raleway', sans-serif;
+  --font-body: 'Literata', Georgia, 'Times New Roman', serif;
+  --hero-floating-h: 52px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -135,15 +136,16 @@ nav.scrolled {
 
 .hero-eyebrow {
   font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 500;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--rose);
   margin-bottom: 28px;
   display: flex;
   align-items: center;
   gap: 16px;
+  line-height: 1.45;
 }
 .hero-eyebrow::before {
   content: '';
@@ -179,12 +181,12 @@ nav.scrolled {
 
 .hero-desc {
   font-family: var(--font-body);
-  font-size: 0.95rem;
-  line-height: 1.8;
+  font-size: 1.0625rem;
+  line-height: 1.78;
   color: var(--text-mid);
-  max-width: 400px;
+  max-width: 440px;
   margin-bottom: 50px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .hero-actions { display: flex; gap: 16px; align-items: center; }
@@ -314,25 +316,60 @@ nav.scrolled {
   left: 28px;
   right: 28px;
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px 28px;
+  align-items: stretch;
+  justify-content: center;
   pointer-events: none;
 }
-.hero-floating > * { pointer-events: auto; }
+.hero-floating-row {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  gap: 10px 18px;
+  flex-wrap: wrap;
+  pointer-events: auto;
+}
 
 .hero-services-cta {
   position: relative;
   left: auto;
   transform: none;
   background: var(--white);
-  padding: 14px 28px;
+  padding: 0 22px;
+  min-height: var(--hero-floating-h);
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   border-bottom: none;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  align-self: stretch;
 }
 .hero-services-cta:hover { border-bottom: none; }
+
+.hero-floating-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  align-self: stretch;
+  min-height: var(--hero-floating-h);
+  padding: 0 2px;
+  color: var(--wine);
+}
+.hero-zipper-arrow {
+  width: 26px;
+  height: calc(var(--hero-floating-h) + 8px);
+  max-height: 64px;
+  flex-shrink: 0;
+  display: block;
+  filter: drop-shadow(0 1px 0 rgba(255,255,255,0.6));
+  animation: hero-zipper-nudge 2.4s ease-in-out infinite;
+}
+@keyframes hero-zipper-nudge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
 
 .hero-tag {
   position: relative;
@@ -342,12 +379,14 @@ nav.scrolled {
   align-items: center;
   gap: 12px;
   background: var(--white);
-  padding: 16px 24px;
+  padding: 0 22px;
+  min-height: var(--hero-floating-h);
   font-family: var(--font-head);
   font-style: italic;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--wine);
   box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+  align-self: stretch;
 }
 .hero-tag-curl {
   flex-shrink: 0;
@@ -453,9 +492,9 @@ section { padding: 100px 60px; }
   color: var(--white);
   font-family: var(--font-head);
   font-style: italic;
-  font-size: 1rem;
+  font-size: 1.0625rem;
   padding: 12px 24px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
 }
 .about-photo-num {
   position: absolute;
@@ -496,21 +535,25 @@ section { padding: 100px 60px; }
 }
 
 .about-content { padding-right: 20px; }
+.about .section-tag {
+  font-size: 0.8125rem;
+  letter-spacing: 0.24em;
+}
 .about-lead {
   font-family: var(--font-head);
-  font-size: 1.5rem;
+  font-size: 1.65rem;
   font-style: italic;
-  line-height: 1.6;
+  line-height: 1.58;
   color: var(--dark-mid);
   margin-bottom: 28px;
   font-weight: 300;
 }
 .about-text {
-  font-size: 0.93rem;
-  line-height: 1.85;
+  font-size: 1.0625rem;
+  line-height: 1.82;
   color: var(--text-mid);
   margin-bottom: 16px;
-  font-weight: 300;
+  font-weight: 400;
 }
 .about-values {
   margin-top: 40px;
@@ -527,10 +570,10 @@ section { padding: 100px 60px; }
   color: var(--dark);
 }
 .about-value-desc {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: var(--text-mid);
-  line-height: 1.6;
-  max-width: 140px;
+  line-height: 1.62;
+  max-width: 160px;
 }
 
 /* ============================================
@@ -600,11 +643,11 @@ section { padding: 100px 60px; }
   margin-bottom: 12px;
 }
 .service-desc {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   color: var(--text-mid);
   line-height: 1.75;
   margin-bottom: 32px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .service-prices { display: flex; flex-direction: column; gap: 10px; }
@@ -617,14 +660,14 @@ section { padding: 100px 60px; }
 }
 .service-price-item:last-child { border-bottom: none; }
 .price-name {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   color: var(--text-mid);
   font-weight: 400;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.015em;
 }
 .price-val {
   font-family: var(--font-head);
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 600;
   color: var(--wine);
   white-space: nowrap;
@@ -848,17 +891,17 @@ section { padding: 100px 60px; }
 .pain-emoji { font-size: 2rem; margin-bottom: 16px; }
 .pain-problem {
   font-family: var(--font-head);
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: var(--dark);
-  margin-bottom: 10px;
-  line-height: 1.3;
+  margin-bottom: 12px;
+  line-height: 1.32;
 }
 .pain-solution {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   color: var(--text-mid);
-  line-height: 1.75;
-  font-weight: 300;
+  line-height: 1.78;
+  font-weight: 400;
 }
 .pain-solution strong { color: var(--wine); font-weight: 500; }
 
@@ -1401,6 +1444,10 @@ footer {
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 
+@media (prefers-reduced-motion: reduce) {
+  .hero-zipper-arrow { animation: none; }
+}
+
 /* ============================================
    RESPONSIVE
    ============================================ */
@@ -1419,6 +1466,8 @@ footer {
   .hero-floating {
     left: 20px;
     right: 20px;
+  }
+  .hero-floating-row {
     justify-content: center;
   }
   .hero-stats { flex-wrap: wrap; }
@@ -1485,7 +1534,7 @@ footer {
 <!-- ============ HERO ============ -->
 <section class="hero" style="padding:0">
   <div class="hero-left">
-    <div class="hero-eyebrow">Швейное ателье · Санкт-Петербург</div>
+    <div class="hero-eyebrow">Швейное ателье · Санкт-Петербург · м.&nbsp;Московская</div>
     <h1 class="hero-title">
       Мастерская<br>
       <em>Риты</em>
@@ -1522,13 +1571,24 @@ footer {
       </div>
     </div>
     <div class="hero-floating">
-      <a href="#services" class="btn-ghost hero-services-cta">Услуги и цены →</a>
-      <div class="hero-tag">
-        с 2009 года
-        <svg class="hero-tag-curl" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M14 2C14 10 6 12 6 19c0 5 4 9 9 9s9-3.5 9-8c0-6-7-8-7-14" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M10.5 24.5l3.2 6.2 4.3-5.8" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+      <div class="hero-floating-row">
+        <a href="#services" class="btn-ghost hero-services-cta">Услуги и цены →</a>
+        <div class="hero-floating-divider" aria-hidden="true">
+          <svg class="hero-zipper-arrow" viewBox="0 0 36 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6v38" stroke="currentColor" stroke-width="1.65" stroke-linecap="round"/>
+            <path d="M11 10h7M11 18h7M11 26h7M11 34h7" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" opacity="0.85"/>
+            <path d="M25 14h-7M25 22h-7M25 30h-7" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" opacity="0.85"/>
+            <path d="M18 44 L9 58 L18 54 L27 58 Z" fill="currentColor" opacity="0.92"/>
+            <path d="M18 54v12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="hero-tag">
+          с 2009 года
+          <svg class="hero-tag-curl" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M14 2C14 10 6 12 6 19c0 5 4 9 9 9s9-3.5 9-8c0-6-7-8-7-14" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10.5 24.5l3.2 6.2 4.3-5.8" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
       </div>
     </div>
   </div>
@@ -1585,7 +1645,7 @@ footer {
       <!-- Заглушка для фото мастера -->
       <div style="width:100%; height:100%; background: linear-gradient(160deg, #D4B8BE 0%, #A07080 50%, #7A4555 100%); min-height: 550px;"></div>
     </div>
-    <div class="about-photo-label">Мастер Рита</div>
+    <div class="about-photo-label">Эксклюзив</div>
     <div class="about-badge">
       <div class="about-badge-num">15</div>
       <div class="about-badge-text">лет мастерства</div>
