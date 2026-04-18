@@ -374,31 +374,42 @@ nav.scrolled {
   color: var(--wine);
 }
 .hero-zipper-arrow {
-  width: 30px;
-  height: calc(var(--hero-floating-h) + 18px);
-  max-height: 76px;
+  width: 36px;
+  height: calc(var(--hero-floating-h) + 24px);
+  max-height: 84px;
   flex-shrink: 0;
   display: block;
-  filter: drop-shadow(0 2px 0 rgba(255,255,255,0.55));
-  opacity: 0.95;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  opacity: 1;
 }
-.hero-zipper-track { opacity: 0.9; }
-.hero-zipper-teeth { opacity: 0.82; }
+.hero-zipper-closed {
+  animation: hero-zipper-closed-pulse 3s ease-in-out infinite;
+}
 .hero-zipper-slider {
-  transform-origin: 18px 10px;
-  animation: hero-zipper-slide 2.8s ease-in-out infinite;
+  transform-origin: 20px 34px;
+  animation: hero-zipper-slide 3s ease-in-out infinite;
 }
 .hero-zipper-open {
-  transform-origin: 18px 44px;
-  animation: hero-zipper-open 2.8s ease-in-out infinite;
+  animation: hero-zipper-open-spread 3s ease-in-out infinite;
+}
+.hero-zipper-final-arrow {
+  animation: hero-zipper-arrow-pulse 2s ease-in-out infinite;
+}
+@keyframes hero-zipper-closed-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.95; }
 }
 @keyframes hero-zipper-slide {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
+  50% { transform: translateY(6px); }
 }
-@keyframes hero-zipper-open {
-  0%, 100% { transform: scaleX(1); opacity: 0.82; }
-  50% { transform: scaleX(1.08); opacity: 1; }
+@keyframes hero-zipper-open-spread {
+  0%, 100% { transform: scaleX(1); opacity: 1; }
+  50% { transform: scaleX(1.1); opacity: 0.95; }
+}
+@keyframes hero-zipper-arrow-pulse {
+  0%, 100% { opacity: 0.9; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(3px); }
 }
 
 .hero-tag {
@@ -750,23 +761,19 @@ section { padding: 100px 60px; }
 .process-steps::before {
   content: '';
   position: absolute;
-  top: 18px;
+  top: -12px;
   left: 8%;
   right: 8%;
-  height: 22px;
-  border-radius: 999px;
-  background:
-    linear-gradient(90deg, transparent, rgba(212,164,174,0.22) 4%, rgba(212,164,174,0.22) 96%, transparent),
-    repeating-linear-gradient(
-      90deg,
-      transparent 0 14px,
-      rgba(255,255,255,0.42) 14px 15px,
-      transparent 15px 30px,
-      rgba(255,255,255,0.2) 30px 31px
-    ),
-    linear-gradient(90deg, rgba(122,37,53,0.12), rgba(184,105,122,0.34), rgba(122,37,53,0.12));
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
-  opacity: 0.9;
+  height: 28px;
+  background-image: url("data:image/svg+xml,%3Csvg width='1200' height='28' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='tape' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E8D4D8;stop-opacity:1'/%3E%3Cstop offset='50%25' style='stop-color:%23F5E8EB;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%23E8D4D8;stop-opacity:1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0 14 Q30 8 60 14 T120 14 T180 14 T240 14 T300 14 T360 14 T420 14 T480 14 T540 14 T600 14 T660 14 T720 14 T780 14 T840 14 T900 14 T960 14 T1020 14 T1080 14 T1140 14 T1200 14 L1200 28 Q1170 22 1140 28 T1080 28 T1020 28 T960 28 T900 28 T840 28 T780 28 T720 28 T660 28 T600 28 T540 28 T480 28 T420 28 T360 28 T300 28 T240 28 T180 28 T120 28 T60 28 T0 28 Z' fill='url(%23tape)'/%3E%3Cg stroke='%237A2535' stroke-width='1.5' opacity='0.7'%3E%3Cline x1='0' y1='4' x2='0' y2='24'/%3E%3Cline x1='60' y1='4' x2='60' y2='24'/%3E%3Cline x1='120' y1='4' x2='120' y2='24'/%3E%3Cline x1='180' y1='4' x2='180' y2='24'/%3E%3Cline x1='240' y1='4' x2='240' y2='24'/%3E%3Cline x1='300' y1='4' x2='300' y2='24'/%3E%3Cline x1='360' y1='4' x2='360' y2='24'/%3E%3Cline x1='420' y1='4' x2='420' y2='24'/%3E%3Cline x1='480' y1='4' x2='480' y2='24'/%3E%3Cline x1='540' y1='4' x2='540' y2='24'/%3E%3Cline x1='600' y1='4' x2='600' y2='24'/%3E%3Cline x1='660' y1='4' x2='660' y2='24'/%3E%3Cline x1='720' y1='4' x2='720' y2='24'/%3E%3Cline x1='780' y1='4' x2='780' y2='24'/%3E%3Cline x1='840' y1='4' x2='840' y2='24'/%3E%3Cline x1='900' y1='4' x2='900' y2='24'/%3E%3Cline x1='960' y1='4' x2='960' y2='24'/%3E%3Cline x1='1020' y1='4' x2='1020' y2='24'/%3E%3Cline x1='1080' y1='4' x2='1080' y2='24'/%3E%3Cline x1='1140' y1='4' x2='1140' y2='24'/%3E%3Cline x1='1200' y1='4' x2='1200' y2='24'/%3E%3C/g%3E%3Cg stroke='%23B8697A' stroke-width='1.2' opacity='0.6'%3E%3Cline x1='30' y1='8' x2='30' y2='20'/%3E%3Cline x1='90' y1='8' x2='90' y2='20'/%3E%3Cline x1='150' y1='8' x2='150' y2='20'/%3E%3Cline x1='210' y1='8' x2='210' y2='20'/%3E%3Cline x1='270' y1='8' x2='270' y2='20'/%3E%3Cline x1='330' y1='8' x2='330' y2='20'/%3E%3Cline x1='390' y1='8' x2='390' y2='20'/%3E%3Cline x1='450' y1='8' x2='450' y2='20'/%3E%3Cline x1='510' y1='8' x2='510' y2='20'/%3E%3Cline x1='570' y1='8' x2='570' y2='20'/%3E%3Cline x1='630' y1='8' x2='630' y2='20'/%3E%3Cline x1='690' y1='8' x2='690' y2='20'/%3E%3Cline x1='750' y1='8' x2='750' y2='20'/%3E%3Cline x1='810' y1='8' x2='810' y2='20'/%3E%3Cline x1='870' y1='8' x2='870' y2='20'/%3E%3Cline x1='930' y1='8' x2='930' y2='20'/%3E%3Cline x1='990' y1='8' x2='990' y2='20'/%3E%3Cline x1='1050' y1='8' x2='1050' y2='20'/%3E%3Cline x1='1110' y1='8' x2='1110' y2='20'/%3E%3Cline x1='1170' y1='8' x2='1170' y2='20'/%3E%3C/g%3E%3Cg stroke='%23D4A4AE' stroke-width='0.8' opacity='0.5'%3E%3Cline x1='15' y1='10' x2='15' y2='18'/%3E%3Cline x1='45' y1='10' x2='45' y2='18'/%3E%3Cline x1='75' y1='10' x2='75' y2='18'/%3E%3Cline x1='105' y1='10' x2='105' y2='18'/%3E%3Cline x1='135' y1='10' x2='135' y2='18'/%3E%3Cline x1='165' y1='10' x2='165' y2='18'/%3E%3Cline x1='195' y1='10' x2='195' y2='18'/%3E%3Cline x1='225' y1='10' x2='225' y2='18'/%3E%3Cline x1='255' y1='10' x2='255' y2='18'/%3E%3Cline x1='285' y1='10' x2='285' y2='18'/%3E%3Cline x1='315' y1='10' x2='315' y2='18'/%3E%3Cline x1='345' y1='10' x2='345' y2='18'/%3E%3Cline x1='375' y1='10' x2='375' y2='18'/%3E%3Cline x1='405' y1='10' x2='405' y2='18'/%3E%3Cline x1='435' y1='10' x2='435' y2='18'/%3E%3Cline x1='465' y1='10' x2='465' y2='18'/%3E%3Cline x1='495' y1='10' x2='495' y2='18'/%3E%3Cline x1='525' y1='10' x2='525' y2='18'/%3E%3Cline x1='555' y1='10' x2='555' y2='18'/%3E%3Cline x1='585' y1='10' x2='585' y2='18'/%3E%3Cline x1='615' y1='10' x2='615' y2='18'/%3E%3Cline x1='645' y1='10' x2='645' y2='18'/%3E%3Cline x1='675' y1='10' x2='675' y2='18'/%3E%3Cline x1='705' y1='10' x2='705' y2='18'/%3E%3Cline x1='735' y1='10' x2='735' y2='18'/%3E%3Cline x1='765' y1='10' x2='765' y2='18'/%3E%3Cline x1='795' y1='10' x2='795' y2='18'/%3E%3Cline x1='825' y1='10' x2='825' y2='18'/%3E%3Cline x1='855' y1='10' x2='855' y2='18'/%3E%3Cline x1='885' y1='10' x2='885' y2='18'/%3E%3Cline x1='915' y1='10' x2='915' y2='18'/%3E%3Cline x1='945' y1='10' x2='945' y2='18'/%3E%3Cline x1='975' y1='10' x2='975' y2='18'/%3E%3Cline x1='1005' y1='10' x2='1005' y2='18'/%3E%3Cline x1='1035' y1='10' x2='1035' y2='18'/%3E%3Cline x1='1065' y1='10' x2='1065' y2='18'/%3E%3Cline x1='1095' y1='10' x2='1095' y2='18'/%3E%3Cline x1='1125' y1='10' x2='1125' y2='18'/%3E%3Cline x1='1155' y1='10' x2='1155' y2='18'/%3E%3Cline x1='1185' y1='10' x2='1185' y2='18'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  box-shadow: 
+    0 2px 4px rgba(0,0,0,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    inset 0 -1px 0 rgba(122,37,53,0.15);
+  border-radius: 3px;
+  opacity: 0.95;
 }
 
 .step {
@@ -1176,8 +1183,22 @@ section { padding: 100px 60px; }
   border: none;
   filter: saturate(0.5) sepia(0.2);
   transition: filter 0.4s;
+  pointer-events: none;
 }
-.contact-map:hover iframe { filter: saturate(0.8) sepia(0.1); }
+.contact-map:hover iframe { 
+  filter: saturate(0.8) sepia(0.1);
+  pointer-events: auto;
+}
+.contact-map-overlay {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  z-index: 1;
+  cursor: pointer;
+}
+.contact-map.active .contact-map-overlay {
+  display: none;
+}
 .map-overlay-tag {
   position: absolute;
   top: 24px; left: 24px;
@@ -1512,8 +1533,10 @@ footer {
 .reveal-delay-3 { transition-delay: 0.3s; }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-zipper-closed,
   .hero-zipper-slider,
-  .hero-zipper-open { animation: none; }
+  .hero-zipper-open,
+  .hero-zipper-final-arrow { animation: none; }
 }
 
 /* ============================================
@@ -1647,22 +1670,96 @@ footer {
       <div class="hero-floating-row">
         <a href="#services" class="btn-ghost hero-services-cta">Услуги и цены →</a>
         <div class="hero-floating-divider" aria-hidden="true">
-          <svg class="hero-zipper-arrow" viewBox="0 0 36 72" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Прокрутите вниз">
-            <path class="hero-zipper-track" d="M18 8v50" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"/>
-            <g class="hero-zipper-teeth" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" opacity="0.8">
-              <path d="M11 12h7M11 19h7M11 26h7M11 33h6"/>
-              <path d="M25 15h-7M25 22h-7M25 29h-7M24 36h-5"/>
+          <svg class="hero-zipper-arrow" viewBox="0 0 40 80" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Прокрутите вниз">
+            <defs>
+              <linearGradient id="zipperMetal" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#8B7355;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#C9A96E;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#8B7355;stop-opacity:1" />
+              </linearGradient>
+              <filter id="zipperShadow">
+                <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-opacity="0.5"/>
+              </filter>
+              <linearGradient id="arrowGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#D4A4AE;stop-opacity:0.8" />
+                <stop offset="100%" style="stop-color:#7A2535;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            
+            <!-- Закрытая часть молнии (верх) -->
+            <g class="hero-zipper-closed" filter="url(#zipperShadow)">
+              <!-- Центральная лента -->
+              <rect x="17" y="4" width="6" height="16" fill="#2A1F1C" opacity="0.3" rx="0.5"/>
+              
+              <!-- Зубчики левой стороны -->
+              <g fill="url(#zipperMetal)">
+                <rect x="12" y="6" width="5" height="2.2" rx="0.3"/>
+                <rect x="12" y="9" width="5" height="2.2" rx="0.3"/>
+                <rect x="12" y="12" width="5" height="2.2" rx="0.3"/>
+                <rect x="12" y="15" width="5" height="2.2" rx="0.3"/>
+              </g>
+              
+              <!-- Зубчики правой стороны -->
+              <g fill="url(#zipperMetal)">
+                <rect x="23" y="6" width="5" height="2.2" rx="0.3"/>
+                <rect x="23" y="9" width="5" height="2.2" rx="0.3"/>
+                <rect x="23" y="12" width="5" height="2.2" rx="0.3"/>
+                <rect x="23" y="15" width="5" height="2.2" rx="0.3"/>
+              </g>
+              
+              <!-- Блики на зубчиках -->
+              <g stroke="#D4A4AE" stroke-width="0.5" opacity="0.6">
+                <line x1="13" y1="7" x2="16" y2="7"/>
+                <line x1="13" y1="10" x2="16" y2="10"/>
+                <line x1="24" y1="7" x2="27" y2="7"/>
+                <line x1="24" y1="10" x2="27" y2="10"/>
+              </g>
             </g>
-            <g class="hero-zipper-open" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" opacity="0.86">
-              <path d="M18 39 C14 44 11 49 8 59"/>
-              <path d="M18 39 C22 44 25 49 28 59"/>
+            
+            <!-- Бегунок (slider) - стрелка вниз -->
+            <g class="hero-zipper-slider" filter="url(#zipperShadow)">
+              <!-- Язычок-стрелка (указывает вниз) -->
+              <path d="M20 20 L20 38" stroke="url(#arrowGlow)" stroke-width="3.5" stroke-linecap="round"/>
+              <ellipse cx="20" cy="20" rx="4" ry="5" fill="url(#zipperMetal)"/>
+              <circle cx="20" cy="20" r="2" fill="#2A1F1C" opacity="0.5"/>
+              
+              <!-- Корпус бегунка - треугольная форма стрелки -->
+              <path d="M14 38 L20 48 L26 38 Z" fill="url(#zipperMetal)"/>
+              <path d="M15 38 L20 46 L25 38 Z" fill="url(#arrowGlow)" opacity="0.4"/>
+              
+              <!-- Блики на стрелке -->
+              <line x1="19" y1="22" x2="19" y2="36" stroke="#D4A4AE" stroke-width="1" opacity="0.6"/>
+              <circle cx="20" cy="41" r="1.5" fill="#FEFCFA" opacity="0.5"/>
             </g>
-            <g class="hero-zipper-slider">
-              <path d="M18 31c-3.2 0-5.8 2.5-5.8 5.6 0 1.7.7 3.1 1.9 4.2L18 46l3.9-5.2c1.2-1.1 1.9-2.5 1.9-4.2 0-3.1-2.6-5.6-5.8-5.6Z" fill="currentColor" opacity="0.96"/>
-              <circle cx="18" cy="36.5" r="1.9" fill="var(--white)" opacity="0.75"/>
-              <path d="M18 46v14" stroke="currentColor" stroke-width="2.35" stroke-linecap="round" opacity="0.94"/>
+            
+            <!-- Открытая/расстёгнутая часть (низ) - расходится шире -->
+            <g class="hero-zipper-open" filter="url(#zipperShadow)">
+              <!-- Левая половина -->
+              <path d="M18 50 Q15 54 12 58 Q9 62 7 68" stroke="#2A1F1C" stroke-width="2.5" opacity="0.35"/>
+              <g fill="url(#zipperMetal)">
+                <rect x="7" y="51" width="4.5" height="2.2" rx="0.3" transform="rotate(-12 9 52)"/>
+                <rect x="6" y="54" width="4.5" height="2.2" rx="0.3" transform="rotate(-18 8 55)"/>
+                <rect x="5" y="57" width="4.5" height="2.2" rx="0.3" transform="rotate(-24 7 58)"/>
+                <rect x="4" y="60" width="4.5" height="2.2" rx="0.3" transform="rotate(-30 6 61)"/>
+                <rect x="3" y="63" width="4.5" height="2.2" rx="0.3" transform="rotate(-36 5 64)"/>
+              </g>
+              
+              <!-- Правая половина -->
+              <path d="M22 50 Q25 54 28 58 Q31 62 33 68" stroke="#2A1F1C" stroke-width="2.5" opacity="0.35"/>
+              <g fill="url(#zipperMetal)">
+                <rect x="28.5" y="51" width="4.5" height="2.2" rx="0.3" transform="rotate(12 31 52)"/>
+                <rect x="29.5" y="54" width="4.5" height="2.2" rx="0.3" transform="rotate(18 32 55)"/>
+                <rect x="30.5" y="57" width="4.5" height="2.2" rx="0.3" transform="rotate(24 33 58)"/>
+                <rect x="31.5" y="60" width="4.5" height="2.2" rx="0.3" transform="rotate(30 34 61)"/>
+                <rect x="32.5" y="63" width="4.5" height="2.2" rx="0.3" transform="rotate(36 35 64)"/>
+              </g>
             </g>
-            <path d="M18 66 L10 59.5 L18 61.8 L26 59.5 Z" fill="currentColor" opacity="0.76"/>
+            
+            <!-- Финальная стрелка вниз с подсветкой -->
+            <g class="hero-zipper-final-arrow">
+              <path d="M20 72 L12 65 L20 67.5 L28 65 Z" fill="url(#arrowGlow)" opacity="0.9" filter="url(#zipperShadow)"/>
+              <circle cx="20" cy="68" r="2" fill="#FEFCFA" opacity="0.3"/>
+            </g>
           </svg>
         </div>
         <div class="hero-tag">
@@ -1737,7 +1834,7 @@ footer {
   <div class="about-content" style="padding: 80px 60px 80px 20px;">
     <div class="section-tag">О мастере</div>
     <h2 class="section-title">Каждый шов —<br><em>с душой</em></h2>
-    <p class="about-lead">"Одежда должна служить вам, а не наоборот."</p>
+    <p class="about-lead" style="margin-top: 32px;">"Одежда должна служить вам, а не наоборот."</p>
     <p class="about-text">
       Я занимаюсь шитьём с 2009 года. За это время через мои руки прошли тысячи
       вещей — от простого подшивания брюк до создания свадебных нарядов с нуля.
@@ -1969,18 +2066,19 @@ footer {
     </div>
   </div>
 
-  <div class="contact-map">
+  <div class="contact-map" id="contactMap">
+    <div class="contact-map-overlay" id="mapOverlay"></div>
     <!-- OpenStreetMap — без API-ключа! -->
     <iframe
       src="https://www.openstreetmap.org/export/embed.html?bbox=30.313913%2C59.848801%2C30.323913%2C59.854801&amp;layer=mapnik&amp;marker=59.851801%2C30.318913"
       title="Карта — Ленинский пр. 161, СПб"
-      loading="lazy"
+      loading="eager"
       allowfullscreen>
     </iframe>
     <div class="map-overlay-tag">Мастерская Риты</div>
     <div class="map-entry-hint">
       🚇 м. Московская — 7 мин. пешком<br>
-      <strong>Вход со двора</strong> · домофон: скажите «к Рите»
+      <strong>Вход со двора</strong> · скажите «к Рите»
     </div>
   </div>
 </div>
@@ -2297,6 +2395,23 @@ if (heroImageWrap) {
 document.addEventListener('DOMContentLoaded', () => {
   renderServices();
   // observeReveal() is already called inside renderServices()
+  
+  // Map interaction control - click to activate
+  const contactMap = document.getElementById('contactMap');
+  const mapOverlay = document.getElementById('mapOverlay');
+  
+  if (contactMap && mapOverlay) {
+    mapOverlay.addEventListener('click', () => {
+      contactMap.classList.add('active');
+    });
+    
+    // Deactivate when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!contactMap.contains(e.target)) {
+        contactMap.classList.remove('active');
+      }
+    });
+  }
 });
 </script>
 </body>
