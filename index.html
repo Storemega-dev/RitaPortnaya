@@ -87,7 +87,8 @@ nav.scrolled {
   color: var(--wine);
 }
 .nav-logo span { font-style: italic; font-weight: 600; }
-.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+.nav-links li { flex-shrink: 0; }
 .nav-links a {
   font-family: var(--font-body);
   font-size: 0.9375rem;
@@ -96,6 +97,7 @@ nav.scrolled {
   text-transform: uppercase;
   color: var(--dark-mid);
   transition: color 0.25s;
+  white-space: nowrap;
 }
 .nav-links a:hover { color: var(--wine); }
 .nav-cta {
@@ -212,7 +214,51 @@ nav.scrolled {
   transition: transform 0.35s ease;
 }
 .btn-primary:hover::before { transform: scaleX(1); }
-.btn-primary span { position: relative; z-index: 1; }
+.btn-primary > * { position: relative; z-index: 1; }
+
+.btn-primary-hero {
+  padding: 16px 28px;
+  gap: 14px;
+  align-items: center;
+  max-width: 100%;
+}
+.btn-primary-hero-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+}
+.btn-primary-hero-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  stroke: none;
+}
+.btn-primary-hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  text-align: left;
+}
+.btn-primary-hero-kicker {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.btn-primary-hero-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
 
 .btn-ghost {
   font-family: var(--font-body);
@@ -260,9 +306,41 @@ nav.scrolled {
   opacity: 0.15;
 }
 
-.hero-tag {
+/* Hero bottom: tag + CTA stay fixed to panel (parallax only on image) */
+.hero-floating {
   position: absolute;
-  bottom: 40px; right: 40px;
+  z-index: 3;
+  bottom: 40px;
+  left: 28px;
+  right: 28px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px 28px;
+  pointer-events: none;
+}
+.hero-floating > * { pointer-events: auto; }
+
+.hero-services-cta {
+  position: relative;
+  left: auto;
+  transform: none;
+  background: var(--white);
+  padding: 14px 28px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  border-bottom: none;
+  white-space: nowrap;
+}
+.hero-services-cta:hover { border-bottom: none; }
+
+.hero-tag {
+  position: relative;
+  bottom: auto;
+  right: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   background: var(--white);
   padding: 16px 24px;
   font-family: var(--font-head);
@@ -270,6 +348,13 @@ nav.scrolled {
   font-size: 1.1rem;
   color: var(--wine);
   box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+}
+.hero-tag-curl {
+  flex-shrink: 0;
+  width: 26px;
+  height: 32px;
+  color: var(--wine);
+  opacity: 0.85;
 }
 
 /* Diagonal decorative line */
@@ -1013,12 +1098,19 @@ section { padding: 100px 60px; }
    FOOTER
    ============================================ */
 footer {
+  position: relative;
+  z-index: 5;
+  isolation: isolate;
   background: var(--dark);
   padding: 50px 60px 30px;
   border-top: 1px solid rgba(255,255,255,0.04);
 }
 .footer-top {
-  display: flex; justify-content: space-between; align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px 32px;
   padding-bottom: 40px;
   border-bottom: 1px solid rgba(255,255,255,0.06);
   margin-bottom: 30px;
@@ -1038,16 +1130,35 @@ footer {
   font-style: italic;
   font-family: var(--font-head);
 }
-.footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+.footer-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px 22px;
+}
+.footer-nav li { display: block; }
 .footer-nav a {
+  display: inline-block;
   font-size: 0.75rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.38);
+  color: rgba(255,255,255,0.42);
   transition: color 0.25s;
   font-weight: 500;
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+  position: relative;
+  padding: 4px 0;
 }
 .footer-nav a:hover { color: var(--thread); }
+@media (min-width: 561px) {
+  .footer-nav { flex-wrap: nowrap; }
+}
 
 .footer-bottom {
   display: flex; justify-content: space-between; align-items: center;
@@ -1081,8 +1192,12 @@ footer {
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex; flex-direction: column;
   overflow: hidden;
+  pointer-events: none;
 }
-.admin-panel.open { transform: translateX(0); }
+.admin-panel.open {
+  transform: translateX(0);
+  pointer-events: auto;
+}
 
 .admin-header {
   padding: 24px;
@@ -1228,8 +1343,12 @@ footer {
   padding: 80px 40px 40px;
   transform: translateX(-100%);
   transition: transform 0.4s ease;
+  pointer-events: none;
 }
-.mobile-menu.open { transform: translateX(0); }
+.mobile-menu.open {
+  transform: translateX(0);
+  pointer-events: auto;
+}
 .mobile-menu-links { list-style: none; }
 .mobile-menu-links li { border-bottom: 1px solid rgba(255,255,255,0.06); }
 .mobile-menu-links a {
@@ -1285,6 +1404,10 @@ footer {
 /* ============================================
    RESPONSIVE
    ============================================ */
+@media (max-width: 1200px) {
+  .nav-links { gap: 22px; }
+  .nav-links a { font-size: 0.8125rem; letter-spacing: 0.1em; }
+}
 @media (max-width: 1024px) {
   nav { padding: 18px 30px; }
   nav.scrolled { padding: 12px 30px; }
@@ -1293,6 +1416,11 @@ footer {
   .hero { grid-template-columns: 1fr; }
   .hero-left { padding: 120px 30px 60px; }
   .hero-right { min-height: 50vh; }
+  .hero-floating {
+    left: 20px;
+    right: 20px;
+    justify-content: center;
+  }
   .hero-stats { flex-wrap: wrap; }
   .stat-item { flex: 1 1 calc(50% - 2px); }
   section { padding: 70px 30px; }
@@ -1310,7 +1438,10 @@ footer {
   .services-note { text-align: left; }
   .portfolio-head { flex-direction: column; gap: 20px; align-items: flex-start; }
   footer { padding: 40px 30px 24px; }
-  .footer-top { flex-direction: column; gap: 28px; }
+}
+@media (max-width: 560px) {
+  .footer-top { flex-direction: column; align-items: stretch; }
+  .footer-nav { justify-content: flex-start; }
 }
 @media (max-width: 600px) {
   .hero-stats { flex-direction: column; }
@@ -1365,8 +1496,16 @@ footer {
       бережно, точно и с любовью к деталям.
     </p>
     <div class="hero-actions">
-      <a href="https://t.me/YOUR_TELEGRAM" class="btn-primary" target="_blank">
-        <span>Записаться онлайн</span>
+      <a href="https://t.me/YOUR_TELEGRAM?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D1%84%D0%BE%D1%80%D0%BC%D0%B8%D1%82%D1%8C%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%20%E2%80%94%20" class="btn-primary btn-primary-hero" target="_blank" rel="noopener noreferrer" title="Откроется Telegram с черновиком сообщения">
+        <span class="btn-primary-hero-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          </svg>
+        </span>
+        <span class="btn-primary-hero-text">
+          <span class="btn-primary-hero-kicker">Через Telegram</span>
+          <span class="btn-primary-hero-title">Оформить заказ</span>
+        </span>
       </a>
     </div>
   </div>
@@ -1382,8 +1521,16 @@ footer {
         </svg>
       </div>
     </div>
-    <div class="hero-tag">с 2009 года</div>
-    <a href="#services" class="btn-ghost" style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); background: var(--white); padding: 16px 32px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">Услуги и цены →</a>
+    <div class="hero-floating">
+      <a href="#services" class="btn-ghost hero-services-cta">Услуги и цены →</a>
+      <div class="hero-tag">
+        с 2009 года
+        <svg class="hero-tag-curl" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M14 2C14 10 6 12 6 19c0 5 4 9 9 9s9-3.5 9-8c0-6-7-8-7-14" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M10.5 24.5l3.2 6.2 4.3-5.8" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
   </div>
 
   <!-- Stats strip -->
@@ -1702,12 +1849,14 @@ footer {
       <div class="footer-logo">Мастерская <em>Риты</em></div>
       <div class="footer-tagline">Швейное ателье · Санкт-Петербург</div>
     </div>
-    <nav class="footer-nav">
-      <a href="#about">О мастере</a>
-      <a href="#services">Услуги</a>
-      <a href="#portfolio">Работы</a>
-      <a href="#booking">Запись</a>
-      <a href="#contact">Адрес</a>
+    <nav class="footer-nav-wrap" aria-label="Разделы сайта">
+      <ul class="footer-nav">
+        <li><a href="#about">О мастере</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#portfolio">Работы</a></li>
+        <li><a href="#booking">Запись</a></li>
+        <li><a href="#contact">Адрес</a></li>
+      </ul>
     </nav>
   </div>
   <div class="footer-bottom">
@@ -1981,15 +2130,17 @@ function showToast(msg) {
 /* ==========================================
    HERO PARALLAX (subtle)
    ========================================== */
-const heroRight = document.querySelector('.hero-right');
-if (heroRight) {
+const heroImageWrap = document.querySelector('.hero-image-wrap');
+if (heroImageWrap) {
   let parallaxTimeout;
   window.addEventListener('scroll', () => {
     if (!parallaxTimeout) {
       parallaxTimeout = setTimeout(() => {
         const y = window.scrollY;
         if (y < window.innerHeight) {
-          heroRight.style.transform = `translateY(${y * 0.15}px)`;
+          heroImageWrap.style.transform = `translateY(${y * 0.15}px)`;
+        } else {
+          heroImageWrap.style.transform = '';
         }
         parallaxTimeout = null;
       }, 10);
