@@ -81,13 +81,38 @@ nav.scrolled {
   box-shadow: 0 1px 0 rgba(122,37,53,0.08);
 }
 .nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--wine);
+  position: relative;
+}
+.nav-logo span { font-style: italic; font-weight: 600; }
+.nav-logo-img {
+  height: 44px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 1px 0 rgba(122,37,53,0.12));
+}
+.nav-logo-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.nav-logo-fallback {
   font-family: var(--font-head);
   font-size: 1.5rem;
   font-weight: 300;
   letter-spacing: 0.12em;
   color: var(--wine);
+  line-height: 1;
 }
-.nav-logo span { font-style: italic; font-weight: 600; }
 .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
 .nav-links li { flex-shrink: 0; }
 .nav-links a {
@@ -358,17 +383,31 @@ nav.scrolled {
   color: var(--wine);
 }
 .hero-zipper-arrow {
-  width: 26px;
-  height: calc(var(--hero-floating-h) + 8px);
-  max-height: 64px;
+  width: 30px;
+  height: calc(var(--hero-floating-h) + 18px);
+  max-height: 76px;
   flex-shrink: 0;
   display: block;
-  filter: drop-shadow(0 1px 0 rgba(255,255,255,0.6));
-  animation: hero-zipper-nudge 2.4s ease-in-out infinite;
+  filter: drop-shadow(0 2px 0 rgba(255,255,255,0.55));
+  opacity: 0.95;
 }
-@keyframes hero-zipper-nudge {
+.hero-zipper-track { opacity: 0.9; }
+.hero-zipper-teeth { opacity: 0.82; }
+.hero-zipper-slider {
+  transform-origin: 18px 10px;
+  animation: hero-zipper-slide 2.8s ease-in-out infinite;
+}
+.hero-zipper-open {
+  transform-origin: 18px 44px;
+  animation: hero-zipper-open 2.8s ease-in-out infinite;
+}
+@keyframes hero-zipper-slide {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(4px); }
+  50% { transform: translateY(8px); }
+}
+@keyframes hero-zipper-open {
+  0%, 100% { transform: scaleX(1); opacity: 0.82; }
+  50% { transform: scaleX(1.08); opacity: 1; }
 }
 
 .hero-tag {
@@ -473,17 +512,23 @@ section { padding: 100px 60px; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
-  align-items: center;
+  align-items: stretch;
   background: var(--white);
 }
 .about-visual {
   position: relative;
 }
 .about-photo {
-  aspect-ratio: 4/5;
   background: linear-gradient(160deg, #D4B8BE 0%, #A07080 50%, #7A4555 100%);
   position: relative;
   overflow: hidden;
+  min-height: 640px;
+  height: 100%;
+}
+.about-photo-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #D4B8BE 0%, #A07080 50%, #7A4555 100%);
 }
 .about-photo-label {
   position: absolute;
@@ -653,10 +698,11 @@ section { padding: 100px 60px; }
 .service-prices { display: flex; flex-direction: column; gap: 10px; }
 .service-price-item {
   display: flex; justify-content: space-between; align-items: center;
-  padding: 10px 0;
+  padding: 12px 0;
   border-bottom: 1px solid var(--bg-alt);
-  opacity: 0.8;
+  opacity: 0.98;
   transition: opacity 0.3s;
+  gap: 16px;
 }
 .service-price-item:last-child { border-bottom: none; }
 .price-name {
@@ -664,13 +710,16 @@ section { padding: 100px 60px; }
   color: var(--text-mid);
   font-weight: 400;
   letter-spacing: 0.015em;
+  line-height: 1.45;
 }
 .price-val {
   font-family: var(--font-head);
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: var(--wine);
   white-space: nowrap;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
 }
 /* admin editable highlight */
 [data-editable]:focus {
@@ -716,9 +765,19 @@ section { padding: 100px 60px; }
 }
 
 .step {
-  padding: 40px;
+  padding: 34px 32px 36px;
   position: relative;
   display: flex; flex-direction: column; align-items: flex-start;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-right: none;
+  transition: transform 0.35s ease, background 0.35s ease, border-color 0.35s ease;
+}
+.step:last-child { border-right: 1px solid rgba(255,255,255,0.06); }
+.step:hover {
+  background: rgba(255,255,255,0.055);
+  border-color: rgba(212,164,174,0.22);
+  transform: translateY(-4px);
 }
 .step-num {
   width: 56px; height: 56px;
@@ -742,16 +801,16 @@ section { padding: 100px 60px; }
 }
 .step-title {
   font-family: var(--font-head);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: var(--white);
   margin-bottom: 14px;
 }
 .step-desc {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   color: rgba(255,255,255,0.45);
   line-height: 1.75;
-  font-weight: 300;
+  font-weight: 350;
 }
 .step-icon {
   font-size: 1.6rem;
@@ -1011,14 +1070,15 @@ section { padding: 100px 60px; }
 }
 .booking-feat {
   display: flex; align-items: center; gap: 10px;
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.6);
-  font-weight: 300;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.66);
+  font-weight: 350;
+  letter-spacing: 0.01em;
 }
 .booking-feat::before {
   content: '✓';
   color: rgba(255,255,255,0.4);
-  font-size: 0.7rem;
+  font-size: 0.85rem;
 }
 
 /* ============================================
@@ -1058,7 +1118,7 @@ section { padding: 100px 60px; }
 }
 
 .contact-detail-label {
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.3);
@@ -1078,7 +1138,7 @@ section { padding: 100px 60px; }
   border-top: 1px solid rgba(255,255,255,0.06);
 }
 .hours-title {
-  font-size: 0.68rem;
+  font-size: 0.8rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.3);
@@ -1090,14 +1150,15 @@ section { padding: 100px 60px; }
   margin-bottom: 8px;
 }
 .hours-day {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   color: rgba(255,255,255,0.5);
   font-weight: 300;
 }
 .hours-time {
   font-family: var(--font-head);
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   color: var(--white);
+  font-variant-numeric: tabular-nums;
 }
 
 .contact-map {
@@ -1445,7 +1506,8 @@ footer {
 .reveal-delay-3 { transition-delay: 0.3s; }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-zipper-arrow { animation: none; }
+  .hero-zipper-slider,
+  .hero-zipper-open { animation: none; }
 }
 
 /* ============================================
@@ -1505,7 +1567,11 @@ footer {
 
 <!-- ============ NAVIGATION ============ -->
 <nav id="navbar">
-  <div class="nav-logo"><span>Мастерская</span> Риты</div>
+  <div class="nav-logo">
+    <img class="nav-logo-img" src="Images/logorita.png" alt="Мастер Рита">
+    <span class="nav-logo-text">Мастерская Риты</span>
+    <span class="nav-logo-fallback" aria-hidden="true"><span>Мастерская</span> Риты</span>
+  </div>
   <ul class="nav-links">
     <li><a href="#about">О мастере</a></li>
     <li><a href="#services">Услуги</a></li>
@@ -1574,12 +1640,21 @@ footer {
       <div class="hero-floating-row">
         <a href="#services" class="btn-ghost hero-services-cta">Услуги и цены →</a>
         <div class="hero-floating-divider" aria-hidden="true">
-          <svg class="hero-zipper-arrow" viewBox="0 0 36 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 6v38" stroke="currentColor" stroke-width="1.65" stroke-linecap="round"/>
-            <path d="M11 10h7M11 18h7M11 26h7M11 34h7" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" opacity="0.85"/>
-            <path d="M25 14h-7M25 22h-7M25 30h-7" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" opacity="0.85"/>
-            <path d="M18 44 L9 58 L18 54 L27 58 Z" fill="currentColor" opacity="0.92"/>
-            <path d="M18 54v12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <svg class="hero-zipper-arrow" viewBox="0 0 36 72" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Прокрутите вниз">
+            <path class="hero-zipper-track" d="M18 8v50" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.55"/>
+            <g class="hero-zipper-teeth" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" opacity="0.8">
+              <path d="M11 12h7M11 20h7M11 28h7M11 36h7"/>
+              <path d="M25 16h-7M25 24h-7M25 32h-7"/>
+            </g>
+            <g class="hero-zipper-open" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" opacity="0.86">
+              <path d="M18 44 C15 48 13 52 10 58"/>
+              <path d="M18 44 C21 48 23 52 26 58"/>
+            </g>
+            <g class="hero-zipper-slider">
+              <path d="M18 38 L11.5 46.5 L18 44 L24.5 46.5 Z" fill="currentColor" opacity="0.94"/>
+              <path d="M18 44v14" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" opacity="0.92"/>
+            </g>
+            <path d="M18 66 L11 60 L18 62 L25 60 Z" fill="currentColor" opacity="0.7"/>
           </svg>
         </div>
         <div class="hero-tag">
@@ -1643,7 +1718,7 @@ footer {
     <div class="about-photo">
       <div class="about-photo-num">R</div>
       <!-- Заглушка для фото мастера -->
-      <div style="width:100%; height:100%; background: linear-gradient(160deg, #D4B8BE 0%, #A07080 50%, #7A4555 100%); min-height: 550px;"></div>
+      <div class="about-photo-fill" aria-hidden="true"></div>
     </div>
     <div class="about-photo-label">Эксклюзив</div>
     <div class="about-badge">
@@ -1889,7 +1964,7 @@ footer {
   <div class="contact-map">
     <!-- OpenStreetMap — без API-ключа! -->
     <iframe
-      src="https://www.openstreetmap.org/export/embed.html?bbox=30.3169%2C59.8484%2C30.3269%2C59.8544&amp;layer=mapnik&amp;marker=59.8514%2C30.3219"
+      src="https://www.openstreetmap.org/export/embed.html?bbox=30.313913%2C59.848801%2C30.323913%2C59.854801&amp;layer=mapnik&amp;marker=59.851801%2C30.318913"
       title="Карта — Ленинский пр. 161, СПб"
       loading="lazy"
       allowfullscreen>
