@@ -43,7 +43,7 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 17px; }
 
 body {
   font-family: var(--font-body);
@@ -205,7 +205,16 @@ nav.scrolled {
   font-weight: 400;
 }
 
-.hero-actions { display: flex; gap: 16px; align-items: center; }
+.hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.hero-services-btn { font-size: 1rem; }
+.hero-year-tag {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--font-head);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--wine);
+}
 
 .btn-primary {
   display: inline-flex; align-items: center; gap: 10px;
@@ -411,6 +420,7 @@ nav.scrolled {
   right: auto;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   background: var(--white);
   padding: 0 22px;
@@ -421,6 +431,13 @@ nav.scrolled {
   color: var(--wine);
   box-shadow: 0 8px 40px rgba(0,0,0,0.2);
   align-self: stretch;
+}
+.hero-tag-year {
+  font-size: 1.3rem;
+  font-family: var(--font-head);
+  font-weight: 600;
+  color: var(--wine);
+  letter-spacing: 0.02em;
 }
 .hero-tag-curl {
   flex-shrink: 0;
@@ -597,24 +614,29 @@ section { padding: 100px 60px; }
 }
 .about-values {
   margin-top: 40px;
-  display: flex; gap: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 .about-value {
-  display: flex; flex-direction: column; gap: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 14px;
 }
-.about-value-icon { font-size: 1.4rem; }
+.about-value-icon { font-size: 1.8rem; }
 .about-value-name {
   font-family: var(--font-head);
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: var(--dark);
   line-height: 1.3;
 }
 .about-value-desc {
-  font-size: 1.08rem;
+  font-size: 1rem;
   color: var(--text-mid);
-  line-height: 1.68;
-  max-width: 180px;
+  line-height: 1.5;
+  max-width: 220px;
 }
 
 /* ============================================
@@ -1295,6 +1317,17 @@ footer {
   opacity: 0.7;
   filter: grayscale(0.3);
 }
+.footer-logo-inmob { display: none; }
+@media (min-width: 601px) { .footer-back-link { display: none; } }
+.footer-back-link {
+  display: flex; align-items: center; justify-content: center;
+  background: var(--wine); color: var(--white);
+  font-size: 1.2rem;
+  border-radius: 4px;
+  transition: background 0.25s;
+  height: 36px; width: 36px;
+}
+.footer-back-link:hover { background: var(--dark); }
 .footer-logo-divider {
   color: rgba(255,255,255,0.2);
   font-size: 1.2rem;
@@ -1513,6 +1546,22 @@ footer {
   transform: translateX(-100%);
   transition: transform 0.4s ease;
   pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+.mobile-menu.open {
+  transform: translateX(0);
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+}
+.footer-nav-wrap { display: block; }
+.footer-back-link { display: none; }
+@media (max-width: 600px) {
+  .footer-nav-wrap { display: none; }
+  .footer-back-link { display: flex; }
+}
+@media (max-width: 520px) {
 }
 .mobile-menu.open {
   transform: translateX(0);
@@ -1539,7 +1588,9 @@ footer {
   font-size: 1.8rem;
   cursor: pointer;
   opacity: 0.6;
+  z-index: 210;
 }
+.mobile-menu-close:hover { opacity: 1; }
 .mobile-tg-btn {
   margin-top: auto;
   display: block;
@@ -1621,12 +1672,150 @@ footer {
   .footer-top { flex-direction: column; align-items: stretch; }
   .footer-nav { justify-content: flex-start; }
 }
+@media (max-width: 520px) {
+  :root {
+    --hero-floating-h: 44px;
+  }
+  html { font-size: 17px; }
+  body { padding-top: 60px; }
+
+  nav { padding: 10px 20px; }
+  nav.scrolled { padding: 8px 20px; }
+  .nav-logo-img { height: 44px; max-width: 75vw; }
+  .nav-burger span { width: 20px; }
+
+  .hero { display: flex; flex-direction: column-reverse; min-height: auto; }
+  .hero-left { padding: 30px 20px 24px; order: 2; }
+  .hero-right { min-height: 35vh; order: 1; position: relative; }
+  .hero-image-wrap { min-height: 35vh; }
+
+  .hero-eyebrow { font-size: 0.8125rem; margin-bottom: 16px; }
+  .hero-eyebrow::before { width: 28px; }
+  .hero-title { font-size: clamp(2.2rem, 9vw, 2.8rem); }
+  .hero-subtitle-text { font-size: clamp(1.4rem, 4vw, 1.8rem); margin-bottom: 20px; }
+  .hero-desc { font-size: 1rem; margin-bottom: 24px; }
+
+  .hero-actions { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .btn-primary { padding: 14px 24px; font-size: 0.875rem; }
+  .btn-ghost { padding: 10px 0; font-size: 0.875rem; }
+
+  .hero-floating { display: flex; bottom: 30px; left: 20px; right: 20px; position: absolute; }
+  .hero-floating-row { flex-direction: row; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; width: 100%; }
+  .hero-services-cta { display: flex; padding: 0 14px; min-height: 42px; font-size: 0.8rem; white-space: nowrap; }
+  .hero-zipper-arrow { display: flex !important; width: 28px; height: 56px; flex-shrink: 0; }
+  .hero-tag { display: flex; padding: 0 14px; min-height: 42px; font-size: 0.9rem; }
+  .hero-tag-year { font-size: 1.6rem; }
+
+  .hero-stats { flex-direction: row; flex-wrap: wrap; gap: 0; background: var(--dark); }
+  .stat-item { flex: 1 1 calc(50% - 0px); padding: 20px 10px; border-right: 1px solid rgba(255,255,255,0.08); border-bottom: none; }
+  .stat-item:nth-child(2) { border-right: none; }
+  .stat-num { font-size: 2.2rem; }
+  .stat-label { font-size: 0.72rem; letter-spacing: 0.08em; }
+
+  .hero-deco { display: none; }
+
+  section { padding: 50px 20px; }
+  .section-tag { font-size: 0.65rem; margin-bottom: 16px; }
+  .section-title { font-size: clamp(1.8rem, 5vw, 2.2rem); line-height: 1.15; }
+  .section-title::after { display: none; }
+
+  .about { grid-template-columns: 1fr; gap: 30px; }
+  .about-visual { min-height: 280px; }
+  .about-photo { min-height: 280px; }
+  .about-photo-num { font-size: 5rem; top: 20px; right: -10px; }
+  .about-photo-label { left: 20px; font-size: 0.9375rem; padding: 10px 18px; }
+  .about-badge { width: 90px; height: 90px; bottom: 30px; right: 10px; }
+  .about-badge-num { font-size: 1.1rem; }
+  .about-badge-text { font-size: 0.5rem; max-width: 60px; }
+
+  .about-content { padding: 40px 20px 30px !important; }
+  .about-lead { font-size: 1.3rem; margin-bottom: 20px; }
+  .about-text { font-size: 0.9375rem; line-height: 1.7; }
+  .about-values { flex-direction: column; gap: 24px; margin-top: 28px; }
+  .about-value { flex-direction: row; align-items: flex-start; gap: 14px; }
+  .about-value-name { font-size: 1rem; }
+  .about-value-desc { font-size: 0.9375rem; max-width: 100%; }
+
+  .services-head { margin-bottom: 40px; }
+  .services-grid { gap: 1px; }
+  .service-card { padding: 28px 20px; }
+  .service-num { font-size: 2.5rem; margin-bottom: 16px; }
+  .service-name { font-size: 1.3rem; }
+  .service-desc { font-size: 0.9375rem; margin-bottom: 20px; }
+  .service-prices { gap: 8px; }
+  .service-price-item { padding: 10px 0; }
+  .price-name { font-size: 0.9375rem; }
+  .price-val { font-size: 1.1rem; }
+
+  .process { padding: 50px 20px; }
+  .process .section-tag { margin-bottom: 16px; }
+  .process-steps { grid-template-columns: 1fr; margin-top: 40px; gap: 0; }
+  .process-steps::after { display: none; }
+  .step { padding: 24px 20px; }
+  .step-num { width: 44px; height: 44px; font-size: 1.1rem; margin-bottom: 20px; }
+  .step-title { font-size: 1.1rem; margin-bottom: 10px; }
+  .step-desc { font-size: 0.9375rem; line-height: 1.6; }
+  .step-icon { display: none; }
+
+  .portfolio { padding: 50px 20px; }
+  .portfolio-head { margin-bottom: 30px; }
+  .portfolio-filters { flex-wrap: wrap; gap: 6px; }
+  .filter-btn { padding: 8px 12px; font-size: 0.6875rem; letter-spacing: 0.1em; }
+  .portfolio-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
+  .portfolio-item { min-height: 120px; }
+  .portfolio-grid .item-tall { aspect-ratio: 3/4; grid-row: span 1; }
+
+  .pain { padding: 50px 20px; }
+  .pain::after { font-size: 14rem; right: -20%; top: -2%; }
+  .pain-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 24px; }
+  .pain-card { padding: 20px 16px; }
+  .pain-emoji { font-size: 1.4rem; margin-bottom: 10px; }
+  .pain-problem { font-size: 1rem; margin-bottom: 8px; }
+  .pain-solution { font-size: 0.8125rem; line-height: 1.6; }
+
+  .booking { padding: 50px 20px; flex-direction: column; text-align: center; gap: 30px; }
+  .booking-title { font-size: clamp(1.8rem, 6vw, 2.4rem); }
+  .booking-subtitle { max-width: 100%; }
+  .booking-features { align-items: center; text-align: left; }
+  .tg-btn { width: 100%; justify-content: center; }
+
+  .contact { grid-template-columns: 1fr; }
+  .contact-info { padding: 40px 20px; }
+  .contact-info .section-title { font-size: 1.8rem; margin-bottom: 32px; }
+  .contact-detail { margin-bottom: 20px; }
+  .contact-detail-icon { width: 38px; height: 38px; font-size: 1rem; }
+  .contact-detail-value { font-size: 0.9375rem; }
+  .contact-hours { margin-top: 24px; padding-top: 24px; }
+  .hours-row { flex-wrap: wrap; gap: 8px; }
+  .contact-map { min-height: 300px; }
+  .map-entry-hint { padding: 12px 14px; font-size: 0.8125rem; }
+
+  footer { padding: 30px 20px 20px; }
+  .footer-top { flex-direction: column; gap: 16px; padding-bottom: 24px; margin-bottom: 20px; }
+  .footer-logo { font-size: 1.3rem; }
+  .footer-logo-img { display: none; }
+  .footer-logo-inmob { display: flex; height: 32px; margin: 0; }
+  .footer-brand-row { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 10px; }
+  .footer-logo-divider { display: none; }
+  .footer-special-text { display: none; }
+  .footer-tagline { display: none; }
+  .footer-nav { flex-direction: row; justify-content: center; flex-wrap: wrap; gap: 6px 12px; }
+  .footer-back-link { display: flex; height: 28px; width: 28px; font-size: 0.9rem; }
+  .footer-nav a { font-size: 0.8125rem; padding: 6px 0; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .footer-copy { font-size: 0.75rem; }
+
+  .mobile-menu { padding: 70px 24px 24px; }
+  .mobile-menu-links a { font-size: 1.6rem; padding: 16px 0; }
+}
 @media (max-width: 600px) {
   .nav-logo-img { height: 44px; max-width: 68vw; }
-  .hero-stats { flex-direction: column; }
-  .stat-item { flex: 1 1 100%; }
+  .hero-stats { flex-direction: row; flex-wrap: wrap; }
+  .stat-item { flex: 1 1 calc(50% - 1px); padding: 18px 12px; }
   .process-steps { grid-template-columns: 1fr; }
   .about-values { flex-wrap: wrap; }
+  .footer-nav-wrap { display: none; }
+  .footer-back-link { display: flex; }
 }
 </style>
 </head>
@@ -1678,6 +1867,7 @@ footer {
       бережно, точно и с любовью к деталям.
     </p>
     <div class="hero-actions">
+      
       <a href="https://t.me/YOUR_TELEGRAM?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D1%84%D0%BE%D1%80%D0%BC%D0%B8%D1%82%D1%8C%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%20%E2%80%94%20" class="btn-primary btn-primary-hero" target="_blank" rel="noopener noreferrer" title="Откроется Telegram с черновиком сообщения">
         <span class="btn-primary-hero-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1689,6 +1879,30 @@ footer {
           <span class="btn-primary-hero-title">Оформить заказ</span>
         </span>
       </a>
+      </div>
+    </div>
+          <svg class="hero-zipper-arrow" viewBox="0 0 40 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="stitchGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#D4A4AE;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#7A2535;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <g class="stitch-line">
+              <line x1="20" y1="8" x2="20" y2="14" stroke="url(#stitchGradient)" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="20" y1="18" x2="20" y2="24" stroke="url(#stitchGradient)" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="20" y1="28" x2="20" y2="34" stroke="url(#stitchGradient)" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="20" y1="38" x2="20" y2="44" stroke="url(#stitchGradient)" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="20" y1="48" x2="20" y2="54" stroke="url(#stitchGradient)" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="20" y1="58" x2="20" y2="64" stroke="url(#stitchGradient)" stroke-width="2.5" stroke-linecap="round"/>
+            </g>
+            <g class="arrow-tip">
+              
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
   <div class="hero-right">
@@ -1728,18 +1942,11 @@ footer {
             <!-- Стрелка внизу (увеличена и изящнее) -->
             <g class="arrow-tip">
               <path d="M20 72 L6 56 L20 61 L34 56 Z" fill="url(#stitchGradient)" opacity="0.95"/>
-              <path d="M20 72 L8 58 L20 62 L32 58 Z" fill="url(#stitchGradient)" opacity="0.6"/>
-              <circle cx="20" cy="66" r="3.5" fill="#FEFCFA" opacity="0.5"/>
-              <circle cx="20" cy="66" r="2" fill="url(#stitchGradient)" opacity="0.3"/>
             </g>
           </svg>
         </div>
         <div class="hero-tag">
-          с 2009 года
-          <svg class="hero-tag-curl" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M14 2C14 10 6 12 6 19c0 5 4 9 9 9s9-3.5 9-8c0-6-7-8-7-14" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M10.5 24.5l3.2 6.2 4.3-5.8" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <span class="hero-tag-year">с 2009 года</span>
         </div>
       </div>
     </div>
@@ -1853,7 +2060,7 @@ footer {
 
 <!-- ============ HOW IT WORKS ============ -->
 <section class="process" id="process" style="padding: 80px 60px;">
-  <img src="Images/см.png" alt="" style="position: absolute; top: 100px; left: 0; right: 0; width: 100%; height: auto; opacity: 0.62; pointer-events: none; z-index: 1;">
+  <img src="Images/см.png" alt="" style="position: absolute; top: 180px; left: 0; right: 0; width: 100%; height: auto; opacity: 0.62; pointer-events: none; z-index: 1;">
   <div class="section-tag">Как это работает</div>
   <h2 class="section-title">Просто и <em>удобно</em></h2>
   <div class="process-steps">
@@ -1972,7 +2179,7 @@ footer {
     <div class="booking-eyebrow">Запись онлайн · 24/7</div>
     <h2 class="booking-title">Готовы обновить<br><em>любимую вещь?</em></h2>
     <p class="booking-subtitle">
-      Напишите мне в Telegram — опишите задачу, прикрепите фото.
+      Пишите мне в Telegram — опишите задачу, прикрепите фото.
       Отвечу в течение часа и предложу удобное время.
     </p>
     <div class="booking-features">
@@ -2060,11 +2267,9 @@ footer {
 <footer>
 <div class="footer-top">
     <div class="footer-brand-row">
+      <img src="Images/Masteriafooter.png" alt="Masteria" class="footer-logo-img footer-logo-inmob">
       <div class="footer-logo">Мастерская <em>Риты</em></div>
-      <img src="Images/Masteriafooter.png" alt="Masteria" class="footer-logo-img">
-      <span class="footer-logo-divider">·</span>
-      <img src="Images/Scarabeyfooter.png" alt="Scarabey" class="footer-logo-img">
-      <span class="footer-special-text">Молниеносные проекты</span>
+      <a href="#" class="footer-back-link" title="Наверх" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑</a>
     </div>
   </div>
     <nav class="footer-nav-wrap" aria-label="Разделы сайта">
