@@ -597,24 +597,31 @@ section { padding: 100px 60px; }
 }
 .about-values {
   margin-top: 40px;
-  display: flex; gap: 32px;
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
 }
 .about-value {
-  display: flex; flex-direction: column; gap: 8px;
+  display: table-cell;
+  width: 33.33%;
+  vertical-align: top;
+  text-align: center;
+  padding: 20px 16px;
+  border: 1px solid rgba(0,0,0,0.06);
 }
-.about-value-icon { font-size: 1.4rem; }
+.about-value-icon { font-size: 1.4rem; display: block; margin-bottom: 8px; }
 .about-value-name {
   font-family: var(--font-head);
   font-size: 1.15rem;
   font-weight: 600;
   color: var(--dark);
   line-height: 1.3;
+  display: block; margin-bottom: 8px;
 }
 .about-value-desc {
   font-size: 1.08rem;
   color: var(--text-mid);
   line-height: 1.68;
-  max-width: 180px;
 }
 
 /* ============================================
@@ -1630,9 +1637,9 @@ footer {
   nav.scrolled { padding: 8px 20px; }
   .nav-logo-img { height: 42px; }
 
-  .hero { grid-template-columns: 1fr; display: flex; flex-direction: column; }
-  .hero-left { padding: 30px 20px 24px; order: 2; }
-  .hero-right { min-height: 35vh; order: 1; }
+  .hero { grid-template-columns: 1fr; display: flex; flex-direction: column-reverse; }
+  .hero-left { padding: 30px 20px 24px; order: 3; }
+  .hero-right { min-height: 35vh; order: 2; }
   .hero-image-wrap { min-height: 35vh; }
 
   .hero-eyebrow { font-size: 0.8125rem; margin-bottom: 16px; }
@@ -1649,7 +1656,7 @@ footer {
   .hero-zipper-arrow { display: flex !important; width: 28px; height: 56px; }
   .hero-tag { display: flex; padding: 0 14px; min-height: 42px; font-size: 0.9rem; }
 
-  .hero-stats { flex-direction: row; flex-wrap: wrap; background: var(--dark); }
+  .hero-stats { flex-direction: row; flex-wrap: wrap; background: var(--dark); order: 1; }
   .stat-item { flex: 1 1 calc(50% - 0px); padding: 20px 10px; border-right: 1px solid rgba(255,255,255,0.08); }
   .stat-item:nth-child(2) { border-right: none; }
   .stat-num { font-size: 2.2rem; }
@@ -1671,9 +1678,11 @@ footer {
   .about-content { padding: 40px 20px 30px !important; }
   .about-lead { font-size: 1.3rem; margin-bottom: 20px; }
   .about-text { font-size: 0.9375rem; }
-  .about-values { flex-direction: column; gap: 24px; margin-top: 28px; }
-  .about-value { flex-direction: row; gap: 14px; }
-  .about-value-name { font-size: 1rem; }
+  .about-values { display: table; width: 100%; border-collapse: collapse; margin-top: 28px; }
+  .about-value { display: table-row; }
+  .about-value-icon { display: inline-block; font-size: 1.2rem; margin-right: 8px; margin-bottom: 0; }
+  .about-value-name { display: inline; font-size: 1rem; }
+  .about-value-desc { display: block; margin-top: 4px; }
 
   .services-grid { gap: 1px; }
   .service-card { padding: 28px 20px; }
@@ -1687,9 +1696,10 @@ footer {
   .step-title { font-size: 1.1rem; }
 
   .portfolio { padding: 50px 20px; }
+  .portfolio-filters { flex-wrap: wrap; gap: 6px; }
+  .filter-btn { font-size: 0.7rem; padding: 6px 10px; }
   .portfolio-grid { grid-template-columns: 1fr 1fr; }
   .portfolio-item { min-height: 120px; }
-  .filter-btn { padding: 6px 10px; font-size: 0.65rem; letter-spacing: 0.05em; }
 
   .pain { padding: 50px 20px; }
   .pain-grid { grid-template-columns: 1fr; gap: 16px; }
@@ -1703,11 +1713,14 @@ footer {
   .contact-map { min-height: 300px; }
 
   footer { padding: 30px 20px; }
-  .footer-top { flex-direction: column; gap: 16px; align-items: center; }
-  .footer-logo { display: flex; align-items: center; gap: 12px; }
-  .footer-logo-img { height: 60px; }
-  .footer-nav { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 8px 16px; }
-  .footer-copy { text-align: center; }
+  .footer-top { flex-direction: column; }
+  .footer-logo { font-size: 1.2rem; }
+  .footer-logo-img { height: 36px !important; }
+  .footer-logo-divider { display: none; }
+  .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+  .footer-copy { font-size: 0.75rem; }
+  .footer-nav-wrap { display: none; }
+  .footer-nav { flex-direction: column; gap: 6px 16px; }
 
   .mobile-menu { padding: 70px 24px; }
   .mobile-menu-links a { font-size: 1.6rem; padding: 16px 0; }
@@ -1938,7 +1951,7 @@ footer {
 
 <!-- ============ HOW IT WORKS ============ -->
 <section class="process" id="process" style="padding: 80px 60px;">
-  <img src="Images/см.png" alt="" style="position: absolute; top: 180px; left: 0; right: 0; width: 100%; height: auto; opacity: 0.62; pointer-events: none; z-index: 1;">
+  <img src="Images/см.png" alt="" style="position: absolute; top: 140px; left: 0; right: 0; width: 100%; height: auto; opacity: 0.62; pointer-events: none; z-index: 1;">
   <div class="section-tag">Как это работает</div>
   <h2 class="section-title">Просто и <em>удобно</em></h2>
   <div class="process-steps">
@@ -2149,7 +2162,6 @@ footer {
       <img src="Images/Masteriafooter.png" alt="Masteria" class="footer-logo-img">
       <span class="footer-logo-divider">·</span>
       <img src="Images/Scarabeyfooter.png" alt="Scarabey" class="footer-logo-img">
-      <span class="footer-special-text">Молниеносные проекты</span>
     </div>
   </div>
     <nav class="footer-nav-wrap" aria-label="Разделы сайта">
