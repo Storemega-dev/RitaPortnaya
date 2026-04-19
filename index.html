@@ -1261,10 +1261,14 @@ footer {
 .footer-logo-img {
   height: 40px;
   width: auto;
-  opacity: 0.7;
+  opacity: 0.3;
   filter: grayscale(0.3);
+  transition: opacity 0.3s ease;
 }
-.footer-logos { display: none; }
+.footer-logo-img:hover {
+  opacity: 1;
+  filter: grayscale(0);
+}
 .footer-tagline {
   font-size: 0.9375rem;
   color: rgba(255,255,255,0.28);
@@ -2047,8 +2051,6 @@ footer {
       <img src="Images/Masteriafooter.png" alt="Masteria" class="footer-logo-img">
       <img src="Images/Scarabeyfooter.png" alt="Scarabey" class="footer-logo-img">
     </div>
-    <div class="footer-tagline">Швейное ателье · Санкт-Петербург</div>
-    </div>
     <nav class="footer-nav-wrap" aria-label="Разделы сайта">
       <ul class="footer-nav">
         <li><a href="#about">О мастере</a></li>
@@ -2060,7 +2062,7 @@ footer {
     </nav>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2026 Мастерская Риты · Ленинский пр. 161, СПб</div>
+    <div class="footer-copy">© 2026 Швейное ателье · Ленинский пр. 161, СПб</div>
     <span class="admin-trigger" id="adminTrigger" title="Управление">⚙</span>
   </div>
 </footer>
