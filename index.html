@@ -1260,14 +1260,19 @@ footer {
   font-style: italic;
   font-family: var(--font-head);
 }
+.footer-tagline-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
 .footer-logos {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-top: 16px;
 }
 .footer-logo-img {
-  height: 32px;
+  height: 28px;
   width: auto;
   opacity: 0.7;
   filter: grayscale(0.3);
@@ -2038,11 +2043,13 @@ footer {
   <div class="footer-top">
     <div>
       <div class="footer-logo">Мастерская <em>Риты</em></div>
-      <div class="footer-tagline">Швейное ателье · Санкт-Петербург</div>
-      <div class="footer-logos">
-        <img src="Images/Masteriafooter.png" alt="Masteria" class="footer-logo-img">
-        <span class="footer-logo-divider">·</span>
-        <img src="Images/Scarabeyfooter.png" alt="Scarabey" class="footer-logo-img">
+      <div class="footer-tagline-row">
+        <span class="footer-tagline">Швейное ателье · Санкт-Петербург</span>
+        <div class="footer-logos">
+          <img src="Images/Masteriafooter.png" alt="Masteria" class="footer-logo-img">
+          <span class="footer-logo-divider">·</span>
+          <img src="Images/Scarabeyfooter.png" alt="Scarabey" class="footer-logo-img">
+        </div>
       </div>
     </div>
     <nav class="footer-nav-wrap" aria-label="Разделы сайта">
