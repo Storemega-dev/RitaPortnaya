@@ -379,37 +379,32 @@ nav.scrolled {
   max-height: 84px;
   flex-shrink: 0;
   display: block;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
   opacity: 1;
 }
-.hero-zipper-closed {
-  animation: hero-zipper-closed-pulse 3s ease-in-out infinite;
+.thread-line {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: thread-draw 3s ease-in-out infinite;
 }
-.hero-zipper-slider {
-  transform-origin: 20px 34px;
-  animation: hero-zipper-slide 3s ease-in-out infinite;
+.needle-group {
+  animation: needle-bob 2s ease-in-out infinite;
+  transform-origin: 20px 5px;
 }
-.hero-zipper-open {
-  animation: hero-zipper-open-spread 3s ease-in-out infinite;
+.arrow-tip {
+  animation: arrow-bounce 2s ease-in-out infinite;
 }
-.hero-zipper-final-arrow {
-  animation: hero-zipper-arrow-pulse 2s ease-in-out infinite;
+@keyframes thread-draw {
+  0%, 100% { stroke-dashoffset: 100; }
+  50% { stroke-dashoffset: 0; }
 }
-@keyframes hero-zipper-closed-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.95; }
-}
-@keyframes hero-zipper-slide {
+@keyframes needle-bob {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(6px); }
+  50% { transform: translateY(3px); }
 }
-@keyframes hero-zipper-open-spread {
-  0%, 100% { transform: scaleX(1); opacity: 1; }
-  50% { transform: scaleX(1.1); opacity: 0.95; }
-}
-@keyframes hero-zipper-arrow-pulse {
-  0%, 100% { opacity: 0.9; transform: translateY(0); }
-  50% { opacity: 1; transform: translateY(3px); }
+@keyframes arrow-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.95; }
+  50% { transform: translateY(4px); opacity: 1; }
 }
 
 .hero-tag {
@@ -1539,10 +1534,9 @@ footer {
 .reveal-delay-3 { transition-delay: 0.3s; }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-zipper-closed,
-  .hero-zipper-slider,
-  .hero-zipper-open,
-  .hero-zipper-final-arrow { animation: none; }
+  .thread-line,
+  .needle-group,
+  .arrow-tip { animation: none; }
 }
 
 /* ============================================
@@ -1678,93 +1672,31 @@ footer {
         <div class="hero-floating-divider" aria-hidden="true">
           <svg class="hero-zipper-arrow" viewBox="0 0 40 80" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Прокрутите вниз">
             <defs>
-              <linearGradient id="zipperMetal" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" style="stop-color:#8B7355;stop-opacity:1" />
-                <stop offset="50%" style="stop-color:#C9A96E;stop-opacity:1" />
-                <stop offset="100%" style="stop-color:#8B7355;stop-opacity:1" />
-              </linearGradient>
-              <filter id="zipperShadow">
-                <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-opacity="0.5"/>
-              </filter>
-              <linearGradient id="arrowGlow" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" style="stop-color:#D4A4AE;stop-opacity:0.8" />
+              <linearGradient id="threadGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#D4A4AE;stop-opacity:1" />
                 <stop offset="100%" style="stop-color:#7A2535;stop-opacity:1" />
               </linearGradient>
             </defs>
             
-            <!-- Закрытая часть молнии (верх) -->
-            <g class="hero-zipper-closed" filter="url(#zipperShadow)">
-              <!-- Центральная лента -->
-              <rect x="17" y="4" width="6" height="16" fill="#2A1F1C" opacity="0.3" rx="0.5"/>
-              
-              <!-- Зубчики левой стороны -->
-              <g fill="url(#zipperMetal)">
-                <rect x="12" y="6" width="5" height="2.2" rx="0.3"/>
-                <rect x="12" y="9" width="5" height="2.2" rx="0.3"/>
-                <rect x="12" y="12" width="5" height="2.2" rx="0.3"/>
-                <rect x="12" y="15" width="5" height="2.2" rx="0.3"/>
-              </g>
-              
-              <!-- Зубчики правой стороны -->
-              <g fill="url(#zipperMetal)">
-                <rect x="23" y="6" width="5" height="2.2" rx="0.3"/>
-                <rect x="23" y="9" width="5" height="2.2" rx="0.3"/>
-                <rect x="23" y="12" width="5" height="2.2" rx="0.3"/>
-                <rect x="23" y="15" width="5" height="2.2" rx="0.3"/>
-              </g>
-              
-              <!-- Блики на зубчиках -->
-              <g stroke="#D4A4AE" stroke-width="0.5" opacity="0.6">
-                <line x1="13" y1="7" x2="16" y2="7"/>
-                <line x1="13" y1="10" x2="16" y2="10"/>
-                <line x1="24" y1="7" x2="27" y2="7"/>
-                <line x1="24" y1="10" x2="27" y2="10"/>
-              </g>
+            <!-- Нитка -->
+            <path d="M20 5 Q18 15 20 25 Q22 35 20 45 Q18 55 20 65" 
+                  stroke="url(#threadGradient)" 
+                  stroke-width="2.5" 
+                  stroke-linecap="round"
+                  fill="none"
+                  class="thread-line"
+                  opacity="0.85"/>
+            
+            <!-- Игла -->
+            <g class="needle-group">
+              <ellipse cx="20" cy="5" rx="2.5" ry="4" fill="#C9A96E" opacity="0.9"/>
+              <circle cx="20" cy="5" r="1.2" fill="#2A1F1C" opacity="0.6"/>
             </g>
             
-            <!-- Бегунок (slider) - стрелка вниз -->
-            <g class="hero-zipper-slider" filter="url(#zipperShadow)">
-              <!-- Язычок-стрелка (указывает вниз) -->
-              <path d="M20 20 L20 38" stroke="url(#arrowGlow)" stroke-width="3.5" stroke-linecap="round"/>
-              <ellipse cx="20" cy="20" rx="4" ry="5" fill="url(#zipperMetal)"/>
-              <circle cx="20" cy="20" r="2" fill="#2A1F1C" opacity="0.5"/>
-              
-              <!-- Корпус бегунка - треугольная форма стрелки -->
-              <path d="M14 38 L20 48 L26 38 Z" fill="url(#zipperMetal)"/>
-              <path d="M15 38 L20 46 L25 38 Z" fill="url(#arrowGlow)" opacity="0.4"/>
-              
-              <!-- Блики на стрелке -->
-              <line x1="19" y1="22" x2="19" y2="36" stroke="#D4A4AE" stroke-width="1" opacity="0.6"/>
-              <circle cx="20" cy="41" r="1.5" fill="#FEFCFA" opacity="0.5"/>
-            </g>
-            
-            <!-- Открытая/расстёгнутая часть (низ) - расходится шире -->
-            <g class="hero-zipper-open" filter="url(#zipperShadow)">
-              <!-- Левая половина -->
-              <path d="M18 50 Q15 54 12 58 Q9 62 7 68" stroke="#2A1F1C" stroke-width="2.5" opacity="0.35"/>
-              <g fill="url(#zipperMetal)">
-                <rect x="7" y="51" width="4.5" height="2.2" rx="0.3" transform="rotate(-12 9 52)"/>
-                <rect x="6" y="54" width="4.5" height="2.2" rx="0.3" transform="rotate(-18 8 55)"/>
-                <rect x="5" y="57" width="4.5" height="2.2" rx="0.3" transform="rotate(-24 7 58)"/>
-                <rect x="4" y="60" width="4.5" height="2.2" rx="0.3" transform="rotate(-30 6 61)"/>
-                <rect x="3" y="63" width="4.5" height="2.2" rx="0.3" transform="rotate(-36 5 64)"/>
-              </g>
-              
-              <!-- Правая половина -->
-              <path d="M22 50 Q25 54 28 58 Q31 62 33 68" stroke="#2A1F1C" stroke-width="2.5" opacity="0.35"/>
-              <g fill="url(#zipperMetal)">
-                <rect x="28.5" y="51" width="4.5" height="2.2" rx="0.3" transform="rotate(12 31 52)"/>
-                <rect x="29.5" y="54" width="4.5" height="2.2" rx="0.3" transform="rotate(18 32 55)"/>
-                <rect x="30.5" y="57" width="4.5" height="2.2" rx="0.3" transform="rotate(24 33 58)"/>
-                <rect x="31.5" y="60" width="4.5" height="2.2" rx="0.3" transform="rotate(30 34 61)"/>
-                <rect x="32.5" y="63" width="4.5" height="2.2" rx="0.3" transform="rotate(36 35 64)"/>
-              </g>
-            </g>
-            
-            <!-- Финальная стрелка вниз с подсветкой -->
-            <g class="hero-zipper-final-arrow">
-              <path d="M20 72 L12 65 L20 67.5 L28 65 Z" fill="url(#arrowGlow)" opacity="0.9" filter="url(#zipperShadow)"/>
-              <circle cx="20" cy="68" r="2" fill="#FEFCFA" opacity="0.3"/>
+            <!-- Стрелка вниз -->
+            <g class="arrow-tip">
+              <path d="M20 70 L14 64 L20 66 L26 64 Z" fill="url(#threadGradient)" opacity="0.95"/>
+              <circle cx="20" cy="67" r="1.5" fill="#FEFCFA" opacity="0.4"/>
             </g>
           </svg>
         </div>
