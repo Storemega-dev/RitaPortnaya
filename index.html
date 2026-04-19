@@ -382,25 +382,23 @@ nav.scrolled {
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
   opacity: 1;
 }
-.thread-line {
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-  animation: thread-draw 3s ease-in-out infinite;
+.stitch-line {
+  animation: stitch-appear 2.5s ease-in-out infinite;
 }
-.needle-group {
-  animation: needle-bob 2s ease-in-out infinite;
-  transform-origin: 20px 5px;
-}
+.stitch-line line:nth-child(1) { animation: stitch-draw 2.5s ease-in-out infinite; animation-delay: 0s; }
+.stitch-line line:nth-child(2) { animation: stitch-draw 2.5s ease-in-out infinite; animation-delay: 0.2s; }
+.stitch-line line:nth-child(3) { animation: stitch-draw 2.5s ease-in-out infinite; animation-delay: 0.4s; }
+.stitch-line line:nth-child(4) { animation: stitch-draw 2.5s ease-in-out infinite; animation-delay: 0.6s; }
+.stitch-line line:nth-child(5) { animation: stitch-draw 2.5s ease-in-out infinite; animation-delay: 0.8s; }
+.stitch-line line:nth-child(6) { animation: stitch-draw 2.5s ease-in-out infinite; animation-delay: 1s; }
 .arrow-tip {
   animation: arrow-bounce 2s ease-in-out infinite;
 }
-@keyframes thread-draw {
-  0%, 100% { stroke-dashoffset: 100; }
-  50% { stroke-dashoffset: 0; }
-}
-@keyframes needle-bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(3px); }
+@keyframes stitch-draw {
+  0% { opacity: 0; stroke-dasharray: 6; stroke-dashoffset: 6; }
+  20% { opacity: 1; stroke-dashoffset: 0; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
 }
 @keyframes arrow-bounce {
   0%, 100% { transform: translateY(0); opacity: 0.95; }
@@ -1534,9 +1532,9 @@ footer {
 .reveal-delay-3 { transition-delay: 0.3s; }
 
 @media (prefers-reduced-motion: reduce) {
-  .thread-line,
-  .needle-group,
-  .arrow-tip { animation: none; }
+  .stitch-line,
+  .stitch-line line,
+  .arrow-tip { animation: none; opacity: 1; }
 }
 
 /* ============================================
@@ -1672,30 +1670,25 @@ footer {
         <div class="hero-floating-divider" aria-hidden="true">
           <svg class="hero-zipper-arrow" viewBox="0 0 40 80" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Прокрутите вниз">
             <defs>
-              <linearGradient id="threadGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <linearGradient id="stitchGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" style="stop-color:#D4A4AE;stop-opacity:1" />
                 <stop offset="100%" style="stop-color:#7A2535;stop-opacity:1" />
               </linearGradient>
             </defs>
             
-            <!-- Нитка -->
-            <path d="M20 5 Q18 15 20 25 Q22 35 20 45 Q18 55 20 65" 
-                  stroke="url(#threadGradient)" 
-                  stroke-width="2.5" 
-                  stroke-linecap="round"
-                  fill="none"
-                  class="thread-line"
-                  opacity="0.85"/>
-            
-            <!-- Игла -->
-            <g class="needle-group">
-              <ellipse cx="20" cy="5" rx="2.5" ry="4" fill="#C9A96E" opacity="0.9"/>
-              <circle cx="20" cy="5" r="1.2" fill="#2A1F1C" opacity="0.6"/>
+            <!-- Стежки (пунктирная линия) -->
+            <g class="stitch-line">
+              <line x1="20" y1="8" x2="20" y2="14" stroke="url(#stitchGradient)" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="20" y1="18" x2="20" y2="24" stroke="url(#stitchGradient)" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="20" y1="28" x2="20" y2="34" stroke="url(#stitchGradient)" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="20" y1="38" x2="20" y2="44" stroke="url(#stitchGradient)" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="20" y1="48" x2="20" y2="54" stroke="url(#stitchGradient)" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="20" y1="58" x2="20" y2="64" stroke="url(#stitchGradient)" stroke-width="2.5" stroke-linecap="round"/>
             </g>
             
-            <!-- Стрелка вниз -->
+            <!-- Стрелка внизу -->
             <g class="arrow-tip">
-              <path d="M20 70 L14 64 L20 66 L26 64 Z" fill="url(#threadGradient)" opacity="0.95"/>
+              <path d="M20 70 L14 64 L20 66 L26 64 Z" fill="url(#stitchGradient)" opacity="0.95"/>
               <circle cx="20" cy="67" r="1.5" fill="#FEFCFA" opacity="0.4"/>
             </g>
           </svg>
