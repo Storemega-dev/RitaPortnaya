@@ -515,7 +515,9 @@ section { padding: 100px 60px; }
   position: relative;
 }
 .about-photo {
-  background: linear-gradient(160deg, #D4B8BE 0%, #A07080 50%, #7A4555 100%);
+  background-image: url('Images/Работы и видео/2.jpg');
+  background-size: cover;
+  background-position: center;
   position: relative;
   overflow: hidden;
   min-height: 640px;
@@ -524,7 +526,7 @@ section { padding: 100px 60px; }
 .about-photo-fill {
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, #D4B8BE 0%, #A07080 50%, #7A4555 100%);
+  background: linear-gradient(160deg, rgba(212,184,190,0.25) 0%, rgba(160,112,128,0.15) 50%, rgba(122,69,85,0.1) 100%);
 }
 .about-photo-label {
   position: absolute;
@@ -892,14 +894,42 @@ section { padding: 100px 60px; }
 }
 .portfolio-item:hover .portfolio-item-inner { transform: scale(1.04); }
 
-/* Placeholder gradients for portfolio items */
-.p1 { background: linear-gradient(145deg, #C4A4AC, #8B5A66); }
-.p2 { background: linear-gradient(145deg, #B8A090, #7A5840); }
-.p3 { background: linear-gradient(145deg, #A4B4C4, #6878A0); }
-.p4 { background: linear-gradient(145deg, #C4B4A0, #907060); }
-.p5 { background: linear-gradient(145deg, #B4C4B4, #708070); }
-.p6 { background: linear-gradient(145deg, #C4A4B8, #907080); }
-.p7 { background: linear-gradient(145deg, #D4C4A4, #A09060); }
+/* Portfolio item images + subtle brand gradient overlay */
+.p1 {
+  background-image: url('Images/Работы и видео/5.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.p2 {
+  background-image: url('Images/Работы и видео/1.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.p4 {
+  background-image: url('Images/Работы и видео/6.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.p5 {
+  background-image: url('Images/Работы и видео/4.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.p3, .p6, .p7 {
+  background: transparent;
+}
+.portfolio-item-inner {
+  position: relative;
+}
+.portfolio-item-inner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, rgba(230,180,170,0.35), rgba(180,120,110,0.18));
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 1;
+}
 
 .portfolio-overlay {
   position: absolute; inset: 0;
@@ -1896,7 +1926,7 @@ footer {
       <!-- Заглушка для фото мастера -->
       <div class="about-photo-fill" aria-hidden="true"></div>
     </div>
-    <div class="about-photo-label">Эксклюзив</div>
+    <div class="about-photo-label">Мастерия</div>
     <div class="about-badge">
       <div class="about-badge-num">15</div>
       <div class="about-badge-text">лет мастерства</div>
@@ -2008,16 +2038,16 @@ footer {
         </div>
       </div>
     </div>
-    <div class="portfolio-item" data-cat="alter">
+    <div class="portfolio-item" data-cat="custom">
       <div class="portfolio-item-inner p2"></div>
       <div class="portfolio-overlay">
         <div class="portfolio-overlay-text">
-          <div class="portfolio-overlay-title">Подгонка пальто</div>
-          <div class="portfolio-overlay-sub">Ушивка по фигуре</div>
+          <div class="portfolio-overlay-title">Мастерская</div>
+          <div class="portfolio-overlay-sub">Интерьер · ателье</div>
         </div>
       </div>
     </div>
-    <div class="portfolio-item" data-cat="repair">
+    <div class="portfolio-item" data-cat="repair" style="display:none">
       <div class="portfolio-item-inner p3"></div>
       <div class="portfolio-overlay">
         <div class="portfolio-overlay-text">
@@ -2044,7 +2074,7 @@ footer {
         </div>
       </div>
     </div>
-    <div class="portfolio-item" data-cat="repair">
+    <div class="portfolio-item" data-cat="repair" style="display:none">
       <div class="portfolio-item-inner p6"></div>
       <div class="portfolio-overlay">
         <div class="portfolio-overlay-text">
@@ -2053,7 +2083,7 @@ footer {
         </div>
       </div>
     </div>
-    <div class="portfolio-item" data-cat="custom">
+    <div class="portfolio-item" data-cat="custom" style="display:none">
       <div class="portfolio-item-inner p7"></div>
       <div class="portfolio-overlay">
         <div class="portfolio-overlay-text">
