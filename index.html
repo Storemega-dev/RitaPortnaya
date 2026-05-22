@@ -1340,6 +1340,25 @@ footer {
 .footer-bottom {
   display: flex; justify-content: space-between; align-items: center;
 }
+.footer-bottom-logos {
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+.footer-bottom-logo {
+  height: 24px;
+  width: auto;
+  opacity: 0.4;
+  filter: grayscale(0.3);
+  transition: opacity 0.3s;
+}
+.footer-bottom-logo:hover {
+  opacity: 0.8;
+}
+.footer-bottom-logo-divider {
+  color: rgba(255,255,255,0.15);
+  font-size: 1rem;
+}
 .footer-copy {
   font-size: 0.875rem;
   color: rgba(255,255,255,0.22);
@@ -1652,10 +1671,10 @@ footer {
   .btn-primary { padding: 14px 24px; font-size: 0.875rem; }
 
   .hero-floating { display: flex; bottom: 30px; left: 20px; right: 20px; position: absolute; }
-  .hero-floating-row { flex-direction: row; align-items: center; justify-content: center; gap: 6px; }
-  .hero-services-cta { display: flex; padding: 0 10px; min-height: 36px; font-size: 0.75rem; white-space: nowrap; }
-  .hero-zipper-arrow { display: flex !important; width: 20px; height: 40px; }
-  .hero-tag { display: flex; padding: 0 10px; min-height: 36px; font-size: 0.8rem; white-space: nowrap; }
+  .hero-floating-row { flex-direction: row; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+  .hero-services-cta { display: flex; padding: 0 4px; min-height: 24px; font-size: 0.6rem; white-space: nowrap; }
+  .hero-zipper-arrow { display: flex !important; width: 28px; height: 56px; }
+  .hero-tag { display: flex; padding: 0 4px; min-height: 24px; font-size: 0.65rem; white-space: nowrap; }
 
   .hero-stats { flex-direction: row; flex-wrap: wrap; background: var(--dark); order: 1; }
   .stat-item { flex: 1 1 calc(50% - 0px); padding: 20px 10px; border-right: 1px solid rgba(255,255,255,0.08); }
@@ -1719,6 +1738,7 @@ footer {
   .footer-logo-img { height: 36px !important; }
   .footer-logo-divider { display: none; }
   .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+  .footer-bottom-logos { display: flex; justify-content: center; }
   .footer-copy { font-size: 0.75rem; }
   .footer-nav-wrap { display: none; }
   .footer-nav { flex-direction: column; gap: 6px 16px; }
@@ -2174,6 +2194,13 @@ footer {
     </nav>
   </div>
   <div class="footer-bottom">
+    <div class="footer-bottom-logos">
+      <img src="Images/Masteriafooter.png" alt="Masteria" class="footer-bottom-logo">
+      <span class="footer-bottom-logo-divider">·</span>
+      <a href="https://scarab.top" target="_blank" rel="noopener noreferrer">
+        <img src="Images/Scarabeyfooter.png" alt="Scarabey" class="footer-bottom-logo">
+      </a>
+    </div>
     <div class="footer-copy">© 2026 Швейное ателье · Ленинский пр. 161, СПб</div>
     <span class="admin-trigger" id="adminTrigger" title="Управление">⚙</span>
   </div>
